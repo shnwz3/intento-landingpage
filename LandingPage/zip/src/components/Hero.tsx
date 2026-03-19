@@ -133,10 +133,9 @@ export function Hero() {
                 <div className="relative font-body text-lg leading-relaxed">
                   <span className="text-on-surface">Subject: Next Steps for the Obsidian Protocol</span>
                   <div className="mt-4">
-                    <span className="text-on-surface">Hi Sarah, I've reviewed the latest build. {SUGGESTIONS.email.slice(0, typedCount)}<span className="inline-block w-0.5 h-6 bg-secondary align-middle ml-1 animate-blink"></span></span>
-                    {/* AI Suggestion Overlay (Triggered State) */}
-                    <span className="text-primary/50 relative">
+                    <span className="text-on-surface">Hi Sarah, I've reviewed the latest build. {SUGGESTIONS.email.slice(0, typedCount)}</span><span className="text-primary/50 relative">
                       {SUGGESTIONS.email.slice(typedCount)}
+                      <span className="inline-block w-0.5 h-6 bg-secondary align-middle ml-1 animate-blink"></span>
                       {/* Tooltip Trigger Visualization */}
                       {typedCount === 0 && (
                         <div className="absolute -top-14 left-0 glass-panel border border-primary/40 rounded-lg px-4 py-2 shadow-2xl animate-pulse-glow z-20">
@@ -177,10 +176,9 @@ export function Hero() {
                   </div>
                   {/* User Typing with AI Suggestion */}
                   <div className="ml-auto bg-primary/10 border border-primary/20 rounded-2xl rounded-tr-none p-4 text-sm text-on-surface max-w-[85%] relative">
-                    <span className="text-on-surface">Yeah, everything looks solid. {SUGGESTIONS.whatsapp.slice(0, typedCount)}<span className="inline-block w-0.5 h-4 bg-secondary align-middle ml-1 animate-blink"></span></span>
-                    {/* AI Suggestion Overlay */}
-                    <span className="text-primary/50 relative">
+                    <span className="text-on-surface">Yeah, everything looks solid. {SUGGESTIONS.whatsapp.slice(0, typedCount)}</span><span className="text-primary/50 relative">
                       {SUGGESTIONS.whatsapp.slice(typedCount)}
+                      <span className="inline-block w-0.5 h-4 bg-secondary align-middle ml-1 animate-blink"></span>
                       {/* Tooltip Trigger Visualization */}
                       {typedCount === 0 && (
                         <div className="absolute -top-12 right-0 glass-panel border border-primary/40 rounded-lg px-4 py-2 shadow-2xl animate-pulse-glow z-20">
@@ -226,10 +224,9 @@ export function Hero() {
                     <span>processed_stream = [d.hex() </span><span className="text-primary">for</span><span> d </span><span className="text-primary">in</span><span> data]</span>
                   </div>
                   <div className="pl-4 mt-1 flex items-center flex-wrap">
-                    <span className="text-on-surface"># {SUGGESTIONS.editor.slice(0, typedCount)}<span className="inline-block w-0.5 h-4 bg-secondary align-middle ml-1 animate-blink"></span></span>
-                    {/* AI Suggestion Overlay (Triggered State) */}
-                    <span className={`text-primary/50 relative ${typedCount === 0 ? 'ml-1' : ''}`}>
+                    <span className="text-on-surface"># {SUGGESTIONS.editor.slice(0, typedCount)}</span><span className={`text-primary/50 relative ${typedCount === 0 ? 'ml-1' : ''}`}>
                       {SUGGESTIONS.editor.slice(typedCount)}
+                      <span className="inline-block w-0.5 h-4 bg-secondary align-middle ml-1 animate-blink"></span>
                       {/* Shortcut Tooltip Overlay */}
                       {typedCount === 0 && (
                         <div className="absolute -top-16 left-0 glass-panel border border-primary/40 rounded-lg px-4 py-2 shadow-2xl animate-pulse-glow z-20">
