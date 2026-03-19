@@ -72,34 +72,34 @@ export function Hero() {
       : "flex items-center gap-2 px-4 py-2 rounded-full hover:bg-surface-container-highest text-on-surface-variant transition-all";
 
   return (
-    <section className="relative px-6 pt-12 pb-24 max-w-7xl mx-auto flex flex-col items-center text-center">
+    <section className="relative px-4 py-4 md:py-8 min-h-[calc(100vh-96px)] max-w-7xl mx-auto flex flex-col items-center justify-center text-center">
       {/* Headline Cluster */}
       <div className="z-10 max-w-3xl">
-        <h1 className="text-5xl md:text-7xl font-headline font-bold tracking-tight text-on-surface mb-6 leading-[1.1]">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-bold tracking-tight text-on-surface mb-4 leading-[1.1]">
           Intento: Your <span className="text-[#BB9EFF]">AI-powered</span> typing assistant.
         </h1>
-        <p className="text-lg md:text-xl text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p className="text-base md:text-lg text-on-surface-variant max-w-2xl mx-auto mb-6 leading-relaxed">
           Intento lives on your desktop and helps you write smarter, faster responses wherever your cursor is.
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button className="w-full sm:w-auto obsidian-gradient text-on-primary-fixed font-headline font-bold px-10 py-5 rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <button className="w-full sm:w-auto obsidian-gradient text-on-primary-fixed font-headline font-bold px-8 py-4 rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95">
             Download for Desktop
           </button>
-          <button className="w-full sm:w-auto bg-surface-container-high text-secondary font-headline font-bold px-10 py-5 rounded-xl border border-outline-variant/10 hover:bg-surface-container-highest transition-colors">
+          <button className="w-full sm:w-auto bg-surface-container-high text-secondary font-headline font-bold px-8 py-4 rounded-xl border border-outline-variant/10 hover:bg-surface-container-highest transition-colors">
             View Demo
           </button>
         </div>
       </div>
 
       {/* Visual Focus: Interactive HUD & Keyboard */}
-      <div className="mt-16 relative w-full max-w-5xl">
+      <div className="mt-6 md:mt-8 relative w-full max-w-4xl flex-1 flex flex-col justify-center">
         {/* Decorative Glows */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 blur-[120px] rounded-full"></div>
 
         {/* Main Device Mockup Container */}
-        <div className="relative bg-surface-container-low rounded-3xl border border-outline-variant/20 p-2 md:p-6 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)]">
+        <div className="relative bg-surface-container-low rounded-3xl border border-outline-variant/20 p-2 md:p-4 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)]">
           {/* Context Switcher (App Selection) */}
-          <div className="flex justify-center gap-3 mb-6">
+          <div className="flex justify-center gap-2 mb-4">
             <div className="flex items-center gap-1 bg-surface-container-high p-1 rounded-full border border-outline-variant/10">
               <button onClick={() => setActiveTab('email')} className={getTabClass('email')}>
                 <Mail className="w-4 h-4" />
@@ -117,7 +117,7 @@ export function Hero() {
           </div>
 
           {/* Dynamic Application UI & Suggestions */}
-          <div className="relative bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-6 mb-8 text-left min-h-[300px] overflow-hidden group">
+          <div className="relative bg-surface-container-lowest rounded-2xl border border-outline-variant/10 p-4 md:p-5 mb-3 text-left min-h-[180px] md:min-h-[220px] flex flex-col justify-center overflow-hidden group">
             
             {activeTab === 'email' && (
               <>
@@ -161,7 +161,7 @@ export function Hero() {
             {activeTab === 'whatsapp' && (
               <>
                 {/* WhatsApp Header Mock */}
-                <div className="flex items-center gap-4 mb-8 pb-4 border-b border-outline-variant/10">
+                <div className="flex items-center gap-4 mb-4 border-b border-outline-variant/10">
                   <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center text-secondary">
                     <User className="w-5 h-5" />
                   </div>
@@ -171,7 +171,7 @@ export function Hero() {
                   </div>
                 </div>
                 {/* Chat Bubbles */}
-                <div className="space-y-4 max-w-lg">
+                <div className="space-y-4 max-w-xxl">
                   <div className="bg-surface-container-high rounded-2xl rounded-tl-none p-4 text-sm text-on-surface-variant max-w-[85%]">
                     <span className="font-bold text-secondary text-[10px] block mb-1">SARAH</span>
                     Just saw the final obsidian kinetic animations. Are we ready for the 2.0 release tomorrow?
@@ -258,30 +258,30 @@ export function Hero() {
           </div>
 
           {/* Prominent Stylized Dark Keyboard */}
-          <div className="bg-[#111111] p-4 md:p-6 rounded-3xl border border-white/5 shadow-2xl flex flex-col gap-3 mt-4">
+          <div className="bg-[#111111] p-3 md:p-4 rounded-3xl border border-white/5 shadow-2xl flex flex-col gap-2 mt-2">
             {/* Row 1 */}
-            <div className="flex gap-3">
-              <div className="w-12 h-12 md:h-14 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] flex items-center justify-center text-[10px] text-white/20">~</div>
-              <div className="flex-1 h-12 md:h-14 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"></div>
-              <div className="w-12 h-12 md:h-14 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"></div>
+            <div className="flex gap-2">
+              <div className="w-10 h-10 md:h-12 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] flex items-center justify-center text-[10px] text-white/20">~</div>
+              <div className="flex-1 h-10 md:h-12 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"></div>
+              <div className="w-10 h-10 md:h-12 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"></div>
             </div>
             
             {/* Row 2 */}
-            <div className="flex gap-3">
-              <div className="w-20 h-12 md:h-14 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"></div>
-              <div className="flex-1 h-12 md:h-14 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"></div>
-              <div className="w-20 h-12 md:h-14 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"></div>
+            <div className="flex gap-2">
+              <div className="w-16 h-10 md:h-12 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"></div>
+              <div className="flex-1 h-10 md:h-12 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"></div>
+              <div className="w-16 h-10 md:h-12 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"></div>
             </div>
             
             {/* Row 3 */}
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               <button 
                 onMouseDown={() => setKeysPressed(p => ({...p, ctrl: true}))}
                 onMouseUp={() => setKeysPressed(p => ({...p, ctrl: false}))}
                 onMouseLeave={() => setKeysPressed(p => ({...p, ctrl: false}))}
                 onTouchStart={() => setKeysPressed(p => ({...p, ctrl: true}))}
                 onTouchEnd={() => setKeysPressed(p => ({...p, ctrl: false}))}
-                className={`w-24 h-12 md:h-14 rounded-xl flex items-center justify-center text-[11px] font-bold font-mono transition-all duration-75 select-none ${
+                className={`w-20 h-10 md:h-12 rounded-xl flex items-center justify-center text-[11px] font-bold font-mono transition-all duration-75 select-none ${
                   keysPressed.ctrl 
                     ? 'bg-primary/30 border-2 border-primary shadow-[0_0_25px_rgba(187,158,255,0.4)] translate-y-[2px] text-primary' 
                     : 'bg-primary/10 border-2 border-primary/50 shadow-[0_0_15px_rgba(187,158,255,0.15)] text-primary'
@@ -294,21 +294,21 @@ export function Hero() {
                 onMouseLeave={() => setKeysPressed(p => ({...p, alt: false}))}
                 onTouchStart={() => setKeysPressed(p => ({...p, alt: true}))}
                 onTouchEnd={() => setKeysPressed(p => ({...p, alt: false}))}
-                className={`w-24 h-12 md:h-14 rounded-xl flex items-center justify-center text-[11px] font-bold font-mono transition-all duration-75 select-none ${
+                className={`w-20 h-10 md:h-12 rounded-xl flex items-center justify-center text-[11px] font-bold font-mono transition-all duration-75 select-none ${
                   keysPressed.alt 
                     ? 'bg-primary/30 border-2 border-primary shadow-[0_0_25px_rgba(187,158,255,0.4)] translate-y-[2px] text-primary' 
                     : 'bg-primary/10 border-2 border-primary/50 shadow-[0_0_15px_rgba(187,158,255,0.15)] text-primary'
                 }`}>
                 ALT
               </button>
-              <div className="flex-1 h-12 md:h-14 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"></div>
+              <div className="flex-1 h-10 md:h-12 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"></div>
               <button 
                 onMouseDown={() => setKeysPressed(p => ({...p, arrowRight: true}))}
                 onMouseUp={() => setKeysPressed(p => ({...p, arrowRight: false}))}
                 onMouseLeave={() => setKeysPressed(p => ({...p, arrowRight: false}))}
                 onTouchStart={() => setKeysPressed(p => ({...p, arrowRight: true}))}
                 onTouchEnd={() => setKeysPressed(p => ({...p, arrowRight: false}))}
-                className={`w-24 h-12 md:h-14 rounded-xl flex items-center justify-center transition-all duration-75 select-none ${
+                className={`w-20 h-10 md:h-12 rounded-xl flex items-center justify-center transition-all duration-75 select-none ${
                   keysPressed.arrowRight 
                     ? 'bg-secondary/30 border-2 border-secondary shadow-[0_0_25px_rgba(0,227,253,0.4)] translate-y-[2px] text-secondary' 
                     : 'bg-secondary/10 border-2 border-secondary/50 shadow-[0_0_15px_rgba(0,227,253,0.15)] text-secondary'
