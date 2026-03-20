@@ -2,8 +2,8 @@ import { Play, PlayCircle, Volume2, Settings, Maximize, Code, MessageCircle, Sen
 
 export function VideoDemo() {
   return (
-    <section className="px-6 py-24 max-w-7xl mx-auto flex flex-col items-center">
-      <div className="text-center max-w-3xl mb-16">
+    <section className="px-6 py-12 md:py-20 max-w-7xl mx-auto flex flex-col items-center">
+      <div className="text-center max-w-3xl mb-10">
         <h2 className="text-4xl md:text-5xl font-headline font-bold text-on-surface mb-6">See Intento in Action</h2>
         <p className="text-lg text-on-surface-variant leading-relaxed">
           Watch how Intento seamlessly integrates into your workflow to provide real-time, context-aware suggestions.
@@ -56,7 +56,7 @@ export function VideoDemo() {
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-30 grayscale contrast-125">
           <div className="flex items-center gap-2 group cursor-default">
             <Code className="w-6 h-6" />
-            <span className="text-xs font-headline font-bold">VS Code</span>
+            <span className="text-xs font-headline font-bold">Coding</span>
           </div>
           <div className="flex items-center gap-2 group cursor-default">
             <MessageCircle className="w-6 h-6" />

@@ -97,10 +97,10 @@ export function Hero() {
           padding-right: 2px;
         }
       `}</style>
-      <section className="relative px-4 py-2 md:py-4 max-w-7xl mx-auto flex flex-col items-center justify-center text-center">
+      <section className="relative px-6 md:px-8 py-2 md:py-4 max-w-7xl mx-auto flex flex-col items-center justify-center text-center">
       {/* Headline Cluster */}
       <div className="z-10 max-w-3xl">
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-headline font-bold tracking-tight text-on-surface mb-4 leading-[1.1]">
+        <h1 className="text-4xl md:text-6xl lg:text-6xl font-headline font-bold tracking-tight text-on-surface mb-4 leading-[1.1]">
           Intento: Your <span className="text-[#BB9EFF]">AI-powered</span> typing assistant.
         </h1>
         <p className="text-base md:text-lg text-on-surface-variant max-w-2xl mx-auto mb-6 leading-relaxed">
