@@ -17,6 +17,19 @@ export function Hero() {
   const [typedCount, setTypedCount] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
 
+  const handleKeyToggle = (key: 'ctrl' | 'alt' | 'arrowRight') => {
+    setKeysPressed(prev => {
+      const next = { ...prev, [key]: !prev[key] };
+      if (next.ctrl && next.alt && next.arrowRight) {
+        if (typedCount === 0 && !isTyping) {
+          setIsTyping(true);
+          return { ctrl: false, alt: false, arrowRight: false }; // Immediate deselect
+        }
+      }
+      return next;
+    });
+  };
+
   useEffect(() => {
     setTypedCount(0);
     setIsTyping(false);
@@ -26,6 +39,7 @@ export function Hero() {
     if (keysPressed.ctrl && keysPressed.alt && keysPressed.arrowRight) {
       if (typedCount === 0 && !isTyping) {
         setIsTyping(true);
+        setKeysPressed({ ctrl: false, alt: false, arrowRight: false }); // Immediate deselect
       }
     }
   }, [keysPressed.ctrl, keysPressed.alt, keysPressed.arrowRight, typedCount, isTyping]);
@@ -68,8 +82,8 @@ export function Hero() {
 
   const getTabClass = (tab: string) => 
     activeTab === tab 
-      ? "flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-primary transition-all"
-      : "flex items-center gap-2 px-4 py-2 rounded-full hover:bg-surface-container-highest text-on-surface-variant transition-all";
+      ? "flex items-center gap-1 md:gap-2 px-2 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/20 border border-primary/30 text-primary transition-all"
+      : "flex items-center gap-1 md:gap-2 px-2 py-1.5 md:px-4 md:py-2 rounded-full hover:bg-surface-container-highest text-on-surface-variant transition-all";
 
   return (
     <div id="home" className="relative pt-20 pb-16 md:pt-28 md:pb-20 overflow-hidden">
@@ -104,8 +118,6 @@ export function Hero() {
 
       {/* Visual Focus: Interactive HUD & Keyboard */}
       <div className="mt-6 md:mt-8 relative w-full max-w-4xl flex-1 flex flex-col justify-center">
-        {/* Decorative Glows */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 blur-[120px] rounded-full"></div>
 
         {/* Main Device Mockup Container */}
         <div className="relative bg-surface-container-low rounded-3xl border border-outline-variant/20 p-2 md:p-4 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)]">
@@ -142,27 +154,28 @@ export function Hero() {
 
                 {/* Typing Area with Suggestions */}
                 <div className="relative font-body text-lg leading-relaxed">
-                  <span className="text-on-surface">Subject: Next Steps for the Obsidian Protocol</span>
-                  <div className="mt-4">
+                  <div className="text-on-surface font-semibold mb-2 block break-words">Subject: Next Steps for the Obsidian Protocol</div>
+                  <div className="mt-2">
                     <span className="text-on-surface border-secondary custom-caret">Hi Shah, I've reviewed the latest build. {SUGGESTIONS.email.slice(0, typedCount)}</span><span className="text-primary/50 relative">
                       {SUGGESTIONS.email.slice(typedCount)}
-                      {/* Tooltip Trigger Visualization */}
+                      {/* Tooltip trigger on Desktop */}
                       {typedCount === 0 && (
-                        <div className="absolute -top-14 left-0 glass-panel border border-primary/40 rounded-lg px-4 py-2 shadow-2xl animate-pulse-glow z-20">
-                          <div className="flex items-center gap-3">
-                            <Zap className="text-primary w-4 h-4" fill="currentColor" />
+                        <div className="absolute -top-14 right-0 md:left-0 md:right-auto glass-panel border border-primary/40 rounded-lg px-2 py-1.5 md:px-4 md:py-2 shadow-2xl animate-pulse-glow z-20 max-w-[200px] md:max-w-none">
+                          <div className="flex items-center gap-2 md:gap-3">
+                            <Zap className="text-primary w-3 h-3 md:w-4 md:h-4" fill="currentColor" />
                             <div className="flex items-center gap-1">
-                              <kbd className="px-1.5 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[10px] text-primary font-mono font-bold">CTRL</kbd>
-                              <kbd className="px-1.5 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[10px] text-primary font-mono font-bold">ALT</kbd>
-                              <kbd className="px-1.5 py-0.5 rounded bg-secondary/20 border border-secondary/40 text-[10px] text-secondary font-mono font-bold">→</kbd>
+                              <kbd className="px-1 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[9px] md:text-[10px] text-primary font-mono font-bold">CTRL</kbd>
+                              <kbd className="px-1 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[9px] md:text-[10px] text-primary font-mono font-bold">ALT</kbd>
+                              <kbd className="px-1 py-0.5 rounded bg-secondary/20 border border-secondary/40 text-[9px] md:text-[10px] text-secondary font-mono font-bold">→</kbd>
                             </div>
-                            <span className="text-[10px] font-label text-on-surface-variant uppercase tracking-widest">Apply</span>
+                            <span className="text-[9px] md:text-[10px] font-label text-on-surface-variant uppercase tracking-widest">Apply</span>
                           </div>
                         </div>
                       )}
                     </span>
                   </div>
                 </div>
+
               </>
             )}
 
@@ -188,23 +201,24 @@ export function Hero() {
                   <div className="ml-auto bg-primary/10 border border-primary/20 rounded-2xl rounded-tr-none p-4 text-sm text-on-surface max-w-[85%] relative">
                     <span className="text-on-surface border-secondary custom-caret">Yeah, everything looks solid. {SUGGESTIONS.whatsapp.slice(0, typedCount)}</span><span className="text-primary/50 relative">
                       {SUGGESTIONS.whatsapp.slice(typedCount)}
-                      {/* Tooltip Trigger Visualization */}
+                      {/* Tooltip trigger on Desktop */}
                       {typedCount === 0 && (
-                        <div className="absolute -top-12 right-0 glass-panel border border-primary/40 rounded-lg px-4 py-2 shadow-2xl animate-pulse-glow z-20">
-                          <div className="flex items-center gap-3">
-                            <Zap className="text-primary w-4 h-4" fill="currentColor" />
+                        <div className="absolute -top-12 right-0 glass-panel border border-primary/40 rounded-lg px-2 py-1.5 md:px-4 md:py-2 shadow-2xl animate-pulse-glow z-20 max-w-[200px] md:max-w-none">
+                          <div className="flex items-center gap-2 md:gap-3">
+                            <Zap className="text-primary w-3 h-3 md:w-4 md:h-4" fill="currentColor" />
                             <div className="flex items-center gap-1">
-                              <kbd className="px-1.5 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[10px] text-primary font-mono font-bold">CTRL</kbd>
-                              <kbd className="px-1.5 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[10px] text-primary font-mono font-bold">ALT</kbd>
-                              <kbd className="px-1.5 py-0.5 rounded bg-secondary/20 border border-secondary/40 text-[10px] text-secondary font-mono font-bold">→</kbd>
+                              <kbd className="px-1 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[9px] md:text-[10px] text-primary font-mono font-bold">CTRL</kbd>
+                              <kbd className="px-1 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[9px] md:text-[10px] text-primary font-mono font-bold">ALT</kbd>
+                              <kbd className="px-1 py-0.5 rounded bg-secondary/20 border border-secondary/40 text-[9px] md:text-[10px] text-secondary font-mono font-bold">→</kbd>
                             </div>
-                            <span className="text-[10px] font-label text-on-surface-variant uppercase tracking-widest">Apply</span>
+                            <span className="text-[9px] md:text-[10px] font-label text-on-surface-variant uppercase tracking-widest">Apply</span>
                           </div>
                         </div>
                       )}
                     </span>
                   </div>
                 </div>
+
               </>
             )}
 
@@ -235,23 +249,24 @@ export function Hero() {
                   <div className="pl-4 mt-1 flex items-center flex-wrap">
                     <span className="text-on-surface border-secondary custom-caret"># {SUGGESTIONS.editor.slice(0, typedCount)}</span><span className={`text-primary/50 relative ${typedCount === 0 ? 'ml-1' : ''}`}>
                       {SUGGESTIONS.editor.slice(typedCount)}
-                      {/* Shortcut Tooltip Overlay */}
+                      {/* Shortcut Tooltip Overlay on Desktop */}
                       {typedCount === 0 && (
-                        <div className="absolute -top-16 left-0 glass-panel border border-primary/40 rounded-lg px-4 py-2 shadow-2xl animate-pulse-glow z-20">
-                          <div className="flex items-center gap-3">
-                            <Zap className="text-primary w-4 h-4" fill="currentColor" />
+                        <div className="absolute -top-16 right-0 md:left-0 md:right-auto glass-panel border border-primary/40 rounded-lg px-2 py-1.5 md:px-4 md:py-2 shadow-2xl animate-pulse-glow z-20 max-w-[200px] md:max-w-none">
+                          <div className="flex items-center gap-2 md:gap-3">
+                            <Zap className="text-primary w-3 h-3 md:w-4 md:h-4" fill="currentColor" />
                             <div className="flex items-center gap-1">
-                              <kbd className="px-1.5 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[10px] text-primary font-mono font-bold">CTRL</kbd>
-                              <kbd className="px-1.5 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[10px] text-primary font-mono font-bold">ALT</kbd>
-                              <kbd className="px-1.5 py-0.5 rounded bg-secondary/20 border border-secondary/40 text-[10px] text-secondary font-mono font-bold">→</kbd>
+                              <kbd className="px-1 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[9px] md:text-[10px] text-primary font-mono font-bold">CTRL</kbd>
+                              <kbd className="px-1 py-0.5 rounded bg-surface-container-highest border border-outline-variant text-[9px] md:text-[10px] text-primary font-mono font-bold">ALT</kbd>
+                              <kbd className="px-1 py-0.5 rounded bg-secondary/20 border border-secondary/40 text-[9px] md:text-[10px] text-secondary font-mono font-bold">→</kbd>
                             </div>
-                            <span className="text-[10px] font-label text-on-surface-variant uppercase tracking-widest whitespace-nowrap">Apply Suggestion</span>
+                            <span className="text-[9px] md:text-[10px] font-label text-on-surface-variant uppercase tracking-widest whitespace-nowrap">Apply Suggestion</span>
                           </div>
                         </div>
                       )}
                     </span>
                   </div>
                 </div>
+
               </>
             )}
 
@@ -259,11 +274,20 @@ export function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent h-1/2 w-full -translate-y-full animate-scan pointer-events-none"></div>
           </div>
 
+
           {/* Prominent Stylized Dark Keyboard */}
           <div className="bg-[#111111] p-3 md:p-4 rounded-3xl border border-white/5 shadow-2xl flex flex-col gap-2 mt-2">
             {/* Row 1 */}
             <div className="flex gap-2">
-              <div className="w-10 h-10 md:h-12 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] flex items-center justify-center text-[10px] text-white/20">~</div>
+              <button 
+                onClick={() => {
+                  setIsTyping(false);
+                  setTypedCount(0);
+                  setKeysPressed({ ctrl: false, alt: false, arrowRight: false });
+                }}
+                className="w-10 h-10 md:h-12 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] flex items-center justify-center text-[9px] text-white/50 font-bold hover:bg-white/10 active:translate-y-[1px] select-none">
+                ESC
+              </button>
               <div className="flex-1 h-10 md:h-12 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"></div>
               <div className="w-10 h-10 md:h-12 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"></div>
             </div>
@@ -278,26 +302,18 @@ export function Hero() {
             {/* Row 3 */}
             <div className="flex gap-2">
               <button 
-                onMouseDown={() => setKeysPressed(p => ({...p, ctrl: true}))}
-                onMouseUp={() => setKeysPressed(p => ({...p, ctrl: false}))}
-                onMouseLeave={() => setKeysPressed(p => ({...p, ctrl: false}))}
-                onTouchStart={() => setKeysPressed(p => ({...p, ctrl: true}))}
-                onTouchEnd={() => setKeysPressed(p => ({...p, ctrl: false}))}
+                onClick={() => handleKeyToggle('ctrl')}
                 className={`w-20 h-10 md:h-12 rounded-xl flex items-center justify-center text-[11px] font-bold font-mono transition-all duration-75 select-none ${
-                  keysPressed.ctrl 
+                  !isTyping && keysPressed.ctrl 
                     ? 'bg-primary/30 border-2 border-primary shadow-[0_0_25px_rgba(187,158,255,0.4)] translate-y-[2px] text-primary' 
                     : 'bg-primary/10 border-2 border-primary/50 shadow-[0_0_15px_rgba(187,158,255,0.15)] text-primary'
                 }`}>
                 CTRL
               </button>
               <button 
-                onMouseDown={() => setKeysPressed(p => ({...p, alt: true}))}
-                onMouseUp={() => setKeysPressed(p => ({...p, alt: false}))}
-                onMouseLeave={() => setKeysPressed(p => ({...p, alt: false}))}
-                onTouchStart={() => setKeysPressed(p => ({...p, alt: true}))}
-                onTouchEnd={() => setKeysPressed(p => ({...p, alt: false}))}
+                onClick={() => handleKeyToggle('alt')}
                 className={`w-20 h-10 md:h-12 rounded-xl flex items-center justify-center text-[11px] font-bold font-mono transition-all duration-75 select-none ${
-                  keysPressed.alt 
+                  !isTyping && keysPressed.alt 
                     ? 'bg-primary/30 border-2 border-primary shadow-[0_0_25px_rgba(187,158,255,0.4)] translate-y-[2px] text-primary' 
                     : 'bg-primary/10 border-2 border-primary/50 shadow-[0_0_15px_rgba(187,158,255,0.15)] text-primary'
                 }`}>
@@ -305,13 +321,9 @@ export function Hero() {
               </button>
               <div className="flex-1 h-10 md:h-12 rounded-xl bg-[#1A1A1A] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"></div>
               <button 
-                onMouseDown={() => setKeysPressed(p => ({...p, arrowRight: true}))}
-                onMouseUp={() => setKeysPressed(p => ({...p, arrowRight: false}))}
-                onMouseLeave={() => setKeysPressed(p => ({...p, arrowRight: false}))}
-                onTouchStart={() => setKeysPressed(p => ({...p, arrowRight: true}))}
-                onTouchEnd={() => setKeysPressed(p => ({...p, arrowRight: false}))}
+                onClick={() => handleKeyToggle('arrowRight')}
                 className={`w-20 h-10 md:h-12 rounded-xl flex items-center justify-center transition-all duration-75 select-none ${
-                  keysPressed.arrowRight 
+                  !isTyping && keysPressed.arrowRight 
                     ? 'bg-secondary/30 border-2 border-secondary shadow-[0_0_25px_rgba(0,227,253,0.4)] translate-y-[2px] text-secondary' 
                     : 'bg-secondary/10 border-2 border-secondary/50 shadow-[0_0_15px_rgba(0,227,253,0.15)] text-secondary'
                 }`}>
