@@ -24,13 +24,13 @@ export function Navbar() {
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
-          <a className="text-secondary font-medium font-headline transition-colors" href="/#features">
+          <Link className="text-secondary font-medium font-headline transition-colors" to="/#features">
             Features
-          </a>
+          </Link>
 
-          <a className="text-on-surface/60 hover:text-on-surface transition-colors font-headline" href="/#security">
+          <Link className="text-on-surface/60 hover:text-on-surface transition-colors font-headline" to="/#security">
             Security
-          </a>
+          </Link>
         </div>
 
         <div className="flex items-center gap-3">

@@ -19,7 +19,8 @@ export function AuthPage() {
   const [info, setInfo] = useState('');
   const [pending, setPending] = useState(false);
 
-  const nextPath = searchParams.get('next') || '/dashboard';
+  const rawNext = searchParams.get('next') || '/dashboard';
+  const nextPath = /^\/[^/]/.test(rawNext) && !rawNext.includes('://') ? rawNext : '/dashboard';
 
   useEffect(() => {
     if (!loading && user) {
