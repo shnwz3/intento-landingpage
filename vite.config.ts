@@ -1,10 +1,11 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {defineConfig, loadEnv} from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 
-export default defineConfig(({mode}) => {
+export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
+
   return {
     plugins: [react(), tailwindcss()],
     define: {
@@ -17,8 +18,14 @@ export default defineConfig(({mode}) => {
     },
     server: {
       // HMR is disabled via DISABLE_HMR env var if needed.
-      // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
+      // Do not modify. File watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
+      proxy: {
+        '/api': {
+          target: env.VITE_PROXY_API_TARGET || 'http://localhost:8787',
+          changeOrigin: true,
+        },
+      },
     },
   };
 });
