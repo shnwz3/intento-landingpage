@@ -70,7 +70,7 @@ function AppShell() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route
-            path="/dashboard"
+            path="/download"
             element={
               <RequireAuth>
                 <DashboardPage />

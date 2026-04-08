@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Mail, MessageSquare, Code, FileText, Zap, ArrowRight, User, MoveRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
-const DOWNLOAD_URL = 'https://github.com/shnwz3/intento/releases/latest/download/Intento.Setup.Latest.exe';
+const DOWNLOAD_URL = import.meta.env.VITE_DOWNLOAD_URL;
 
 const SUGGESTIONS = {
   email: "I think we should proceed with the deployment tomorrow...",
@@ -132,12 +132,9 @@ export function Hero() {
           <button
               onClick={() => {
                 if (user) {
-                  const a = document.createElement('a');
-                  a.href = DOWNLOAD_URL;
-                  a.download = 'Intento.Setup.Latest.exe';
-                  a.click();
+                  navigate('/download');
                 } else {
-                  navigate('/auth?next=/dashboard');
+                  navigate('/auth?next=/download');
                 }
               }}
               className="w-full sm:w-auto obsidian-gradient text-on-primary-fixed font-headline font-bold px-8 py-4 rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95">

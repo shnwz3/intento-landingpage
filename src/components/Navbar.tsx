@@ -36,12 +36,6 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           {user ? (
             <>
-              <Link
-                className="hidden sm:inline-flex bg-surface-container-high text-on-surface px-4 py-2 rounded-lg font-headline font-bold hover:bg-surface-container-highest transition-all"
-                to="/dashboard"
-              >
-                Dashboard
-              </Link>
               <button
                 className="bg-primary/15 text-primary px-4 py-2 rounded-lg font-headline font-bold border border-primary/20 hover:bg-primary/20 transition-all active:scale-95 duration-200"
                 onClick={handleSignOut}
