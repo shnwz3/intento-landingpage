@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Mail, MessageSquare, Code, FileText, Zap, ArrowRight, User, MoveRight } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+
+const DOWNLOAD_URL = 'https://github.com/shnwz3/intento/releases/latest/download/Intento.Setup.Latest.exe';
 
 const SUGGESTIONS = {
   email: "I think we should proceed with the deployment tomorrow...",
@@ -9,6 +13,8 @@ const SUGGESTIONS = {
 };
 
 export function Hero() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'email' | 'whatsapp' | 'editor' | 'form'>('email');
   const [keysPressed, setKeysPressed] = useState({
     ctrl: false,
@@ -123,9 +129,20 @@ export function Hero() {
           Intento lives on your desktop and helps you write smarter, faster responses wherever your cursor is.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <button className="w-full sm:w-auto obsidian-gradient text-on-primary-fixed font-headline font-bold px-8 py-4 rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95">
-            Download for Desktop
-          </button>
+          <button
+              onClick={() => {
+                if (user) {
+                  const a = document.createElement('a');
+                  a.href = DOWNLOAD_URL;
+                  a.download = 'Intento.Setup.Latest.exe';
+                  a.click();
+                } else {
+                  navigate('/auth?next=/dashboard');
+                }
+              }}
+              className="w-full sm:w-auto obsidian-gradient text-on-primary-fixed font-headline font-bold px-8 py-4 rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95">
+              Download for Desktop
+            </button>
           <button className="w-full sm:w-auto bg-surface-container-high text-secondary font-headline font-bold px-8 py-4 rounded-xl border border-outline-variant/10 hover:bg-surface-container-highest transition-colors">
             View Demo
           </button>

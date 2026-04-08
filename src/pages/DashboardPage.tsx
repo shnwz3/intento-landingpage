@@ -2,6 +2,8 @@ import { Cpu, Download, KeyRound, Monitor, ShieldCheck, Sparkles, Zap } from 'lu
 import { useAuth } from '../context/AuthContext';
 import { SetupNotice } from '../components/SetupNotice';
 
+const DOWNLOAD_URL = 'https://github.com/shnwz3/intento/releases/latest/download/Intento.Setup.Latest.exe';
+
 export function DashboardPage() {
   const { configured, user } = useAuth();
 
@@ -37,10 +39,14 @@ export function DashboardPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <button aria-disabled="true" className="flex items-center justify-center gap-3 bg-primary text-on-primary px-8 py-4 rounded-full font-headline font-semibold hover:scale-105 hover:bg-primary/90 transition-all active:scale-95 shadow-[0_0_40px_-10px_rgba(var(--color-primary),0.5)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:active:scale-100" disabled title="Coming soon">
+            <a
+              href={DOWNLOAD_URL}
+              download="Intento.Setup.Latest.exe"
+              className="flex items-center justify-center gap-3 bg-primary text-on-primary px-8 py-4 rounded-full font-headline font-semibold hover:scale-105 hover:bg-primary/90 transition-all active:scale-95 shadow-[0_0_40px_-10px_rgba(var(--color-primary),0.5)]"
+            >
               <Download className="w-5 h-5" />
               Download for Windows
-            </button>
+            </a>
             <button aria-disabled="true" className="flex items-center justify-center gap-3 bg-surface-container-high border border-outline-variant/30 text-on-surface px-8 py-4 rounded-full font-headline font-semibold hover:bg-surface-container-highest transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:active:scale-100" disabled title="Coming soon">
               <Download className="w-5 h-5" />
               Download for macOS
