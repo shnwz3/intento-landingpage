@@ -132,7 +132,10 @@ export function Hero() {
           <button
               onClick={() => {
                 if (user) {
-                  window.location.href = DOWNLOAD_URL;
+                  const a = document.createElement('a');
+                  a.href = DOWNLOAD_URL;
+                  a.download = 'Intento.Setup.Latest.exe';
+                  a.click();
                 } else {
                   navigate('/auth?next=/dashboard');
                 }

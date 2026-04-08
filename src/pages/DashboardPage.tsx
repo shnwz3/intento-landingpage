@@ -41,6 +41,7 @@ export function DashboardPage() {
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href={DOWNLOAD_URL}
+              download="Intento.Setup.Latest.exe"
               className="flex items-center justify-center gap-3 bg-primary text-on-primary px-8 py-4 rounded-full font-headline font-semibold hover:scale-105 hover:bg-primary/90 transition-all active:scale-95 shadow-[0_0_40px_-10px_rgba(var(--color-primary),0.5)]"
             >
               <Download className="w-5 h-5" />
